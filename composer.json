@@ -1,0 +1,8 @@
+{
+    "autoload": {
+        "psr-0": {"WerkBox": "src/"}
+    },
+    "require": {
+        "php": ">=5.3.3"
+    }
+}
