@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="WerkBox" default="build">
-    <target name="build" depends="prepare,lint,phploc,pdepend,phpcs,phpmd,phpcpd,phpdoc,phpcb"/>
+    <target name="build" depends="prepare,lint,phploc,pdepend,phpcs,phpmd,phpcpd,phpdoc,phpcb,test"/>
     <target name="clean">
         <delete dir="${basedir}/build/code-browser"/>
         <delete dir="${basedir}/build/docs"/>
@@ -83,5 +83,12 @@
             <arg value="--output" />
             <arg path="${basedir}/build/code-browser" />
         </exec>
+    </target>
+    <target name="test">
+        <exec executable="phpunit">
+            <arg value="--configuration tests/phpunit.xml" />
+            <arg path="${basedir}/src" />
+        </exec>
+        <scp keyfile="${user.home}/.ssh/id_rsa" file="jenkins@dev.api01:/pool/www/api.breakmedia.com/tests/logs/*" todir="${basedir}/build/logs"/>
     </target>
 </project>
