@@ -85,10 +85,15 @@
         </exec>
     </target>
     <target name="test">
-        <exec executable="phpunit">
-            <arg value="--configuration tests/phpunit.xml" />
-            <arg path="${basedir}/src" />
+        <exec executable="composer">
+            <arg value="update" />
         </exec>
-        <scp keyfile="${user.home}/.ssh/id_rsa" file="jenkins@dev.api01:/pool/www/api.breakmedia.com/tests/logs/*" todir="${basedir}/build/logs"/>
+        <exec executable="composer">
+            <arg value="install" />
+        </exec>
+        <exec executable="phpunit">
+            <arg value="--configuration build/phpunit.xml" />
+            <arg path="${basedir}/tests" />
+        </exec>
     </target>
 </project>
