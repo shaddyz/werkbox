@@ -23,6 +23,12 @@ namespace WerkBox\App;
  */
 class View
 {
+    public function setTemplateDirectory($newTemplateDir)
+    {
+        static $templateDir = '';
+        
+        $templateDir = $newTemplateDir;
+    }
     public function compose($template)
     {
         ob_start();
