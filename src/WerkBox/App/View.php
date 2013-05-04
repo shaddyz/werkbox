@@ -23,12 +23,28 @@ namespace WerkBox\App;
  */
 class View
 {
-    public function setTemplateDirectory($newTemplateDir)
+    public function templateDirectory($newTemplateDir = null)
     {
         static $templateDir = '';
         
-        $templateDir = $newTemplateDir;
+        if (is_null($newTemplateDir)) {
+            return $templateDir;
+        } else {
+            $templateDir = $newTemplateDir;
+        }
     }
+    
+    public function templateExtension($newTemplateExt = null)
+    {
+        static $templateExt = 'phtml';
+        
+        if (is_null($newTemplateExt)) {
+            return $templateExt;
+        } else {
+            $templateExt = $newTemplateExt;
+        }
+    }
+    
     public function compose($template)
     {
         ob_start();
